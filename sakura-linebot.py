@@ -156,7 +156,7 @@ def echo(event):
             prompt = event.message.text
             prompt = "{}".format(prompt.strip().replace('\n', ''))
             #result = str(chat_engine.chat(prompt, tool_choice="query_engine_tool"))
-            result = str(chat_engine.chat(prompt))
+            result = str(chat_engine.chat(prompt)).replace('*   **', '◼').replace('**', '').replace('* ', '✅ ')
             if result == "Empty Response":
                 result = str(Settings.llm.complete("""
 妳現在是櫻花澍社區的管理小助理。
