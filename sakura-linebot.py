@@ -34,7 +34,10 @@ from linebot.v3.messaging.models.show_loading_animation_request import ShowLoadi
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.openai import OpenAI
 from llama_index.core.node_parser import SentenceSplitter
-from llama_index.llms.gemini import Gemini
+
+#from llama_index.llms.gemini import Gemini
+from llama_index.llms.google_genai import GoogleGenAI
+
 # from llama_index.embeddings.gemini import GeminiEmbedding
 # from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 
@@ -65,13 +68,14 @@ os.environ['GOOGLE_API_KEY'] = os.environ.get('google_gemini_key')
 #     top_k=40,
 #     repedtion_penalty=1.1
 # )
-Settings.llm = Gemini(
-    model="models/gemini-2.5-flash-lite",
-    temperature=0.1,
-    top_p=0.9,
-    top_k=40,
-    repedtion_penalty=1.1
+Settings.llm = GoogleGenAI(
+    model="gemini-2.5-flash-lite",
+    # temperature=0.1,
+    # top_p=0.9,
+    # top_k=40,
+    # repedtion_penalty=1.1
 )
+
 # Settings.embed_model = GeminiEmbedding(
 #     model_name="models/gemini-embedding-001"
 # )
