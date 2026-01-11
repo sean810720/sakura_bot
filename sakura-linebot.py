@@ -66,7 +66,7 @@ os.environ['GOOGLE_API_KEY'] = os.environ.get('google_gemini_key')
 #     repedtion_penalty=1.1
 # )
 Settings.llm = Gemini(
-    model="models/gemini-2.0-flash-lite",
+    model="models/gemini-2.5-flash-lite",
     temperature=0.1,
     top_p=0.9,
     top_k=40,
