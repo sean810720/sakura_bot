@@ -36,7 +36,7 @@ from llama_index.llms.openai import OpenAI
 from llama_index.core.node_parser import SentenceSplitter
 
 #from llama_index.llms.gemini import Gemini
-from llama-index-llms-google-genai import GoogleGenAI
+from llama_index.llms.google_genai import GoogleGenAI
 
 # from llama_index.embeddings.gemini import GeminiEmbedding
 # from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
