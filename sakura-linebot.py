@@ -2,7 +2,7 @@
 [LINEBot] 櫻花小助理
 
 - Heroku 網址:
-https://sakura-linebot-3fa4265a2d17.herokuapp.com/callback
+https://sakura-bot-g977.onrender.com/callback
 '''
 
 import os, configparser
@@ -40,34 +40,22 @@ from llama_index.llms.gemini import Gemini
 
 # Flask & 一般設定
 app = Flask(__name__)
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 # LINEbot 設定
-handler = WebhookHandler(config.get(
-    'sakura-linebot',
-    'channel_secret'
-))
+handler = WebhookHandler(
+    os.environ.get('channel_secret')
+)
 line_bot = MessagingApi(
     ApiClient(
         Configuration(
-            access_token=config.get(
-                'sakura-linebot',
-                'channel_access_token'
-            )
+            access_token=os.environ.get('channel_access_token')
         )
     )
 )
 
 # LLM API 設定
-os.environ['OPENAI_API_KEY'] = config.get(
-    'sakura-linebot',
-    'openai_key'
-)
-os.environ['GOOGLE_API_KEY'] = config.get(
-    'sakura-linebot',
-    'google_gemini_key'
-)
+os.environ['OPENAI_API_KEY'] = os.environ.get('openai_key')
+os.environ['GOOGLE_API_KEY'] = os.environ.get('google_gemini_key')
 
 # LlamaIndex LLM 設定
 # Settings.llm = OpenAI(
