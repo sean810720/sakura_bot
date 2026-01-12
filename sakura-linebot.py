@@ -34,10 +34,7 @@ from linebot.v3.messaging.models.show_loading_animation_request import ShowLoadi
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.openai import OpenAI
 from llama_index.core.node_parser import SentenceSplitter
-
-#from llama_index.llms.gemini import Gemini
 from llama_index.llms.google_genai import GoogleGenAI
-
 # from llama_index.embeddings.gemini import GeminiEmbedding
 # from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
 
@@ -61,19 +58,8 @@ os.environ['OPENAI_API_KEY'] = os.environ.get('openai_key')
 os.environ['GOOGLE_API_KEY'] = os.environ.get('google_gemini_key')
 
 # LlamaIndex LLM 設定
-# Settings.llm = OpenAI(
-#     model="gpt-4o-mini",
-#     temperature=0,
-#     top_p=0.9,
-#     top_k=40,
-#     repedtion_penalty=1.1
-# )
 Settings.llm = GoogleGenAI(
     model="gemini-2.5-flash-lite",
-    # temperature=0.1,
-    # top_p=0.9,
-    # top_k=40,
-    # repedtion_penalty=1.1
 )
 
 # Settings.embed_model = GeminiEmbedding(
@@ -151,11 +137,10 @@ def echo(event):
                     loadingSeconds=60
                 )
             )
-            
+
             # 提問處理
             prompt = event.message.text
             prompt = "{}".format(prompt.strip().replace('\n', ''))
-            #result = str(chat_engine.chat(prompt, tool_choice="query_engine_tool"))
             result = str(chat_engine.chat(prompt))
             result = result.replace('*   **', '◼').replace('**', '').replace('* ', '✅ ') if result else ""
             if result == "Empty Response":
